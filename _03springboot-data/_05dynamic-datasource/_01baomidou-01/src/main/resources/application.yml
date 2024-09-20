@@ -1,0 +1,29 @@
+spring:
+  # datasource 数据源配置内容
+  datasource:
+    # dynamic-datasource-spring-boot-starter 动态数据源的配置内容
+    dynamic:
+      primary: users
+      datasource:
+        # 订单 orders 数据源配置
+        orders:
+          url: jdbc:mysql://127.0.0.1:3306/dynamic_datasource_orders?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+          driver-class-name: com.mysql.jdbc.Driver
+          username: root
+          password: root
+        # 用户 users 数据源配置
+        users:
+          url: jdbc:mysql://127.0.0.1:3306/dynamic_datasource_users?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+          driver-class-name: com.mysql.jdbc.Driver
+          username: root
+          password: root
+    url: jdbc:mysql://127.0.0.1:3306/zhudao-springboot-test
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+
+# mybatis 配置内容
+mybatis:
+  config-location: classpath:mybatis-config.xml # 配置 MyBatis 配置文件路径
+  mapper-locations: classpath:mapper/*.xml # 配置 Mapper XML 地址
+  type-aliases-package: com.zhudao.springboot.baomidou.dataobject # 配置数据库实体包路径

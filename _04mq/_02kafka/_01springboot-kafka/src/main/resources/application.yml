@@ -1,0 +1,41 @@
+spring:
+  # kafka配置,  KafkaProperties 配置类
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092 # 指定kafka broker地址, 可设置多个 逗号分割
+    # kafka producer配置项
+    producer:
+      # 生产者消息确认机制, 影响kafka的吞吐量
+      # 0: 生产者在发送消息后不会等待确认  1: 生产者在收到leader分区的确认后认为消息认为成功 all/-1: 所有分区都确认后生产者认为消息发送成功
+      acks: 1
+      retries: 3 # 发送失败时重试的次数
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer  # 消息key的序列化
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # 消息value的序列化
+    # kafka consumer的配置
+    consumer:
+      # 消费者在没有初始偏移量或当前初始偏移量在服务器不存在时应该如何处理
+      # earliest: 消费者从分区的起始位置开始读取消息  latest: 消费者从分区的末尾开始读取消息   none: 消费者抛出offsetOutOfRangeException
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              package: com.zhudao.springboot.kafka._01base.message
+    # kafka listener监听配置
+    listener:
+      # 监听器订阅的一个或多个主题不存在时, 是否会导致应用程序启动失败
+      # true: 存在订阅的主题不存在, 停止应用启动    false: 存在订阅的主题不存在, 应用继续启动, 当主题被创建后自动订阅消费
+      missing-topics-fatal: false
+
+# spring-kafka INFO 日志太多了，所以我们限制只打印 ERROR 级别
+logging:
+  level:
+    org:
+      springframework:
+        kafka: ERROR
+      apache:
+        kafka: ERROR
+
+yml:
+  prefix: base

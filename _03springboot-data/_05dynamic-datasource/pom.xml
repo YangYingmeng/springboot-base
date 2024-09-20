@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.zhudao.springboot</groupId>
+        <artifactId>_03springboot-data</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>_05dynamic-datasource</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>_01baomidou-01</module>
+        <module>_02baomidou-02</module>
+        <module>_03sharding-jdbc-01</module>
+        <module>_04sharding-jdbc-02</module>
+    </modules>
+
+</project>
